@@ -16,26 +16,10 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY
 
 set(CMAKE_Fortran_MODULE_DIRECTORY ${PROJECT_BINARY_DIR}/include/fortran)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
+
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
-add_library(
-    fizz_buzz
-    SHARED
-    src/fizz_buzz.f90
-    src/fizz_buzz.h
-    src/divisible.f90
-    )
-
-add_executable(
-    fb.x
-    src/main.cpp
-    )
-
-target_link_libraries(
-    fb.x
-    fizz_buzz
-    )
-
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
+add_subdirectory(src)
 
 include(tests)
